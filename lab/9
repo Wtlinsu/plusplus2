@@ -1,0 +1,132 @@
+Завдання 3: Змінити місцями найбільший і найменший елементи масиву
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int n = 10;
+    int arr[n];
+
+    srand(time(0));
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 100 - 50; // Випадкові числа від -50 до 49
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    int minIndex = 0, maxIndex = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] < arr[minIndex]) minIndex = i;
+        if (arr[i] > arr[maxIndex]) maxIndex = i;
+    }
+
+    swap(arr[minIndex], arr[maxIndex]);
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+Завдання 4: Порахувати кількість елементів масиву, більших за число A
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int n = 10;
+    int arr[n], A, count = 0;
+
+    srand(time(0));
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 100 - 50;
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    cout << "Enter a number A: ";
+    cin >> A;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] > A) count++;
+    }
+
+    cout << "Count of elements greater than " << A << ": " << count << endl;
+
+    return 0;
+}
+
+Завдання 5: Знайти другий за величиною елемент масиву
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int n = 10;
+    int arr[n];
+
+    srand(time(0));
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 100 - 50;
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    int max = arr[0], secondMax = INT_MIN;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) {
+            secondMax = max;
+            max = arr[i];
+        } else if (arr[i] > secondMax && arr[i] != max) {
+            secondMax = arr[i];
+        }
+    }
+
+    cout << "Second largest element: " << secondMax << endl;
+
+    return 0;
+}
+
+Завдання 6: Знайти перший нульовий елемент масиву
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int n = 10;
+    int arr[n];
+
+    srand(time(0));
+    for (int i = 0; i < n; i++) {
+        arr[i] = rand() % 10 - 5; // Випадкові числа від -5 до 4
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    int zeroIndex = -1;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 0) {
+            zeroIndex = i;
+            break;
+        }
+    }
+
+    if (zeroIndex != -1) {
+        cout << "First zero element at index: " << zeroIndex << endl;
+    } else {
+        cout << "No zero elements in the array." << endl;
+    }
+
+    return 0;
+}
