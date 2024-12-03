@@ -1,0 +1,242 @@
+Завдання 1
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int m = 4, n = 3;
+    int arr[m][n];
+
+    srand(time(0));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            arr[i][j] = rand() % 100; 
+            cout << arr[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    cout << "Even numbers count in each row:" << endl;
+    for (int i = 0; i < m; i++) {
+        int evenCount = 0;
+        for (int j = 0; j < n; j++) {
+            if (arr[i][j] % 2 == 0) {
+                evenCount++;
+            }
+        }
+        cout << "Row " << i + 1 << ": " << evenCount << endl;
+    }
+
+    return 0;
+}
+
+Завдання 2
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int m = 6, n = 4;
+    int arr[m][n];
+
+    srand(time(0));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            arr[i][j] = rand() % 100;
+            cout << arr[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    cout << "Even numbers count in each column:" << endl;
+    for (int j = 0; j < n; j++) {
+        int evenCount = 0;
+        for (int i = 0; i < m; i++) {
+            if (arr[i][j] % 2 == 0) {
+                evenCount++;
+            }
+        }
+        cout << "Column " << j + 1 << ": " << evenCount << endl;
+    }
+
+    return 0;
+}
+
+Завдання 3
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int m = 5, n = 7;
+    int arr[m][n];
+
+    srand(time(0));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            arr[i][j] = rand() % 100;
+            cout << arr[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    cout << "Row sums:" << endl;
+    for (int i = 0; i < m; i++) {
+        int sum = 0;
+        for (int j = 0; j < n; j++) {
+            sum += arr[i][j];
+        }
+        cout << "Row " << i + 1 << ": " << sum << endl;
+    }
+
+    return 0;
+}
+
+Завдання 4
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int m = 4, n = 6;
+    int arr[m][n];
+
+    srand(time(0));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            arr[i][j] = rand() % 100;
+            cout << arr[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    cout << "Column sums:" << endl;
+    for (int j = 0; j < n; j++) {
+        int sum = 0;
+        for (int i = 0; i < m; i++) {
+            sum += arr[i][j];
+        }
+        cout << "Column " << j + 1 << ": " << sum << endl;
+    }
+
+    return 0;
+}
+
+Завдання 5
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int m = 3, n = 4;
+    int arr[m][n];
+
+    srand(time(0));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            arr[i][j] = rand() % 100;
+            cout << arr[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    int max = arr[0][0], maxRow = 0, maxCol = 0;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (arr[i][j] > max) {
+                max = arr[i][j];
+                maxRow = i;
+                maxCol = j;
+            }
+        }
+    }
+
+    cout << "Max element: " << max << " at (" << maxRow + 1 << ", " << maxCol + 1 << ")" << endl;
+
+    return 0;
+}
+
+Завдання 6:
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int m = 4, n = 7;
+    int arr[m][n];
+
+    srand(time(0));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            arr[i][j] = rand() % 100;
+            cout << arr[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    int min = arr[0][0], minRow = 0, minCol = 0;
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (arr[i][j] < min) {
+                min = arr[i][j];
+                minRow = i;
+                minCol = j;
+            }
+        }
+    }
+
+    cout << "Min element: " << min << " at (" << minRow + 1 << ", " << minCol + 1 << ")" << endl;
+
+    return 0;
+}
+
+Завдання 15
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    const int m = 3, n = 3;
+    int arr[m][n];
+
+    srand(time(0));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            arr[i][j] = rand() % 100;
+            cout << arr[i][j] << "\t";
+        }
+        cout << endl;
+    }
+
+    int mainDiagSum = 0, secondaryDiagSum = 0;
+    for (int i = 0; i < m; i++) {
+        mainDiagSum += arr[i][i];
+        secondaryDiagSum += arr[i][n - i - 1];
+    }
+
+    cout << "Sum of main diagonal: " << mainDiagSum << endl;
+    cout << "Sum of secondary diagonal: " << secondaryDiagSum << endl;
+
+    return 0;
+}
