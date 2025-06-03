@@ -1,0 +1,185 @@
+-Task1-
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person
+{
+public:
+    string name;
+    int age;
+};
+
+void print(const Person* person)
+{
+    cout << person->name << " is " << person->age << " years old" << endl;
+}
+
+int main()
+{
+    // Створення об'єктів класу Person
+    Person person1;
+    person1.name = "Harry";
+    person1.age = 23;
+
+    Person person2;
+    person2.name = "Alice";
+    person2.age = 30;
+
+    Person person3;
+    person3.name = "Bob";
+    person3.age = 27;
+
+    // Виклик функції print для кожного об'єкта
+    print(&person1);
+    print(&person2);
+    print(&person3);
+
+    return 0;
+}
+-Task2-
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Square
+{
+public:
+    Square(double side);
+    void setSide(double side);  // метод для зміни сторони
+    double getSide() const;  // метод для отримання сторони
+    double getArea() const;  // метод для отримання площі
+    void print() const;  // метод для виведення даних
+
+private:
+    double side;
+    double area;
+};
+
+Square::Square(double side)
+{
+    this->side = side;
+    this->area = side * side;
+}
+
+void Square::setSide(double side)
+{
+    if (side > 0)  // перевірка, щоб сторона була позитивною
+    {
+        this->side = side;
+        this->area = side * side;  // оновлення площі
+    }
+    else
+    {
+        cout << "Side length must be positive." << endl;
+    }
+}
+
+double Square::getSide() const
+{
+    return side;
+}
+
+double Square::getArea() const
+{
+    return area;
+}
+
+void Square::print() const
+{
+    cout << "Square: side=" << side << " area=" << area << endl;
+}
+
+int main()
+{
+    Square s(4);
+    s.print();  // Виведемо початкові значення
+    s.setSide(2.0);
+    s.print();  // Виведемо нові значення після зміни сторони
+    s.setSide(-33.0);  // Спробуємо задати негативну сторону
+    s.print();  // Перевіримо результат
+    return 0;
+}
+-task3-
+#include <iostream>
+using namespace std;
+
+class AdHocSquare
+{
+public:
+    AdHocSquare(double side);
+    void set_side(double side);
+    double get_area();
+    
+private:
+    double side;
+};
+
+AdHocSquare::AdHocSquare(double side) : side(side) {}
+
+void AdHocSquare::set_side(double side)
+{
+    this->side = side;
+}
+
+double AdHocSquare::get_area()
+{
+    return side * side;
+}
+
+class LazySquare
+{
+public:
+    LazySquare(double side);
+    void set_side(double side); 
+    double get_area(); 
+
+private:
+    double side;
+    double area;
+    bool side_changed;
+    void update_area();
+};
+
+LazySquare::LazySquare(double side) : side(side), area(side * side), side_changed(false) {}
+
+void LazySquare::set_side(double side)
+{
+    if (this->side != side)
+    {
+        this->side = side;
+        this->side_changed = true;
+    }
+}
+
+void LazySquare::update_area()
+{
+    if (side_changed)
+    {
+        area = side * side;
+        side_changed = false;
+    }
+}
+
+double LazySquare::get_area()
+{
+    update_area();
+    return area;
+}
+
+int main()
+{
+    AdHocSquare square1(4);
+    cout << "AdHocSquare area: " << square1.get_area() << endl;
+    square1.set_side(5);
+    cout << "AdHocSquare area after change: " << square1.get_area() << endl;
+    
+    LazySquare square2(6);
+    cout << "LazySquare area: " << square2.get_area() << endl;
+    square2.set_side(5);
+    cout << "LazySquare area after change: " << square2.get_area() << endl;
+    square2.set_side(2);
+    cout << "LazySquare area without change: " << square2.get_area() << endl;
+    
+    return 0;
+}
