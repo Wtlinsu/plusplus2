@@ -1,0 +1,87 @@
+#include <iostream> 
+#include <ctime>  
+using namespace std;
+
+
+struct Date {
+    int year;  
+    int month;
+    int day;   
+};
+
+bool isLeap(int year) {
+   
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+
+int monthLength(int year, int month) {
+   
+    if (month == 2) {
+              return isLeap(year) ? 29 : 28;
+    }
+  
+    else if (month == 4 || month == 6 || month == 9 || month == 11) {
+        return 30;
+    }
+    
+    else {
+        return 31;
+    }
+}
+
+
+Date today(void) {
+    time_t t = time(NULL); 
+    tm tl = *localtime(&t); 
+
+    Date today_date; 
+    today_date.year = tl.tm_year + 1900; 
+    today_date.month = tl.tm_mon + 1;   
+    today_date.day = tl.tm_mday;    
+    return today_date; 
+}
+
+
+long long daysSinceBeginning(Date date) {
+    long long days = 0; 
+
+    
+    for (int y = 1; y < date.year; ++y) {
+        
+        days += isLeap(y) ? 366 : 365;
+    }
+
+    
+    for (int m = 1; m < date.month; ++m) {
+       
+        days += monthLength(date.year, m);
+    }
+
+    days += date.day;
+    return days; 
+}
+
+int main(void) {
+    Date t = today(); 
+    cout << "Поточна дата: " << t.year << "-" << t.month << "-" << t.day << endl; 
+
+    int birthYear, birthMonth, birthDay; 
+    cout << "Введіть рік народження: "; 
+    cin >> birthYear;               
+    cout << "Введіть місяць народження: "; 
+    cin >> birthMonth;             
+    cout << "Введіть день народження: ";   
+    cin >> birthDay;                
+
+    Date birthday = {birthYear, birthMonth, birthDay}; 
+
+    long long daysBirthday = daysSinceBeginning(birthday);
+    long long daysToday = daysSinceBeginning(t);      
+
+    long long differenceInDays = daysToday - daysBirthday; 
+
+    cout << "Кількість днів, що пройшли від вашого дня народження до поточної дати: "
+              << differenceInDays << " днів." << endl; 
+    return 0; 
+}
