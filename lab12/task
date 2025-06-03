@@ -1,0 +1,50 @@
+#include <iostream>
+
+using namespace std;
+
+int main(void) {
+    int vector[] = { 3, -5, 7, 10, -4, 14, 5, 2, -13 };
+    int n = sizeof(vector) / sizeof(vector[0]);
+
+    int *ptr = vector; 
+    int *end = vector + n;
+    int minValue = *ptr; 
+
+    for (; ptr < end; ++ptr) { 
+        if (*ptr < minValue) {
+            minValue = *ptr;
+        }
+    }
+
+    cout << "Мінімальний елемент: " << minValue << endl;
+
+    return 0;
+}
+
+/* Task 2 */
+
+#include <iostream>
+
+using namespace std;
+
+int main(void) {
+    int matrix[10][10] = { 0 };
+
+    int *ptr = &matrix[0][0]; 
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            *(ptr + i * 10 + j) = (i + 1) * (j + 1);
+        }
+    }
+
+    for (int i = 0; i < 10; i++) {
+        for (int j = 0; j < 10; j++) {
+            cout.width(4);
+            cout << *(ptr + i * 10 + j); 
+        }
+        cout << endl;
+    }
+
+    return 0;
+}
